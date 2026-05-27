@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DealZone – Hottest Coupons & Offers</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lucide/0.263.1/umd/lucide.min.js"></script>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════════
+     NAVBAR
+══════════════════════════════════════════════ -->
+<nav class="navbar">
+  <div class="nav-inner">
+    <a class="nav-logo" href="#">Deal<span>Zone</span></a>
+    <div class="nav-links">
+      <a class="nav-link" href="#">Categories</a>
+      <a class="nav-link" href="#">Travel</a>
+      <a class="nav-link" href="#">Today's Deals</a>
+      <a class="nav-link" href="#">Exclusive</a>
+      <a class="nav-link" href="#">Blog</a>
+    </div>
+    <div class="nav-search">
+      <input type="text" placeholder="Search stores, coupons…">
+      <button class="nav-search-btn" aria-label="Search">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      </button>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a class="nav-link" href="#">Categories</a>
+    <a class="nav-link" href="#">Travel</a>
+    <a class="nav-link" href="#">Today's Deals</a>
+    <a class="nav-link" href="#">Exclusive</a>
+    <a class="nav-link" href="#">Blog</a>
+    <div class="mobile-search">
+      <input type="text" placeholder="Search stores, coupons…">
+      <button aria-label="Search">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- ══════════════════════════════════════════════
+     HERO
+══════════════════════════════════════════════ -->
+<section class="hero">
+  <div style="max-width:1240px;margin:0 auto;padding:0 20px;">
+    <div class="slider-wrap" id="heroSlider">
+      <div class="slides" id="slides">
+
+        <!-- Slide 1 -->
+        <div class="slide" style="background:linear-gradient(135deg,#0E3B75,#0056A6);">
+          <div class="slide-inner">
+            <div class="slide-content">
+              <div class="badge badge-teal">🔥 Flash Sale – Today Only</div>
+              <h1 class="slide-title">Up to 70% Off<br>on Tech Gadgets</h1>
+              <p class="slide-desc">Verified coupons from 500+ stores. No signup needed — just save instantly.</p>
+              <div style="display:flex;gap:12px;flex-wrap:wrap;">
+                <a class="btn btn-primary" href="#">Grab Coupons</a>
+                <a class="btn btn-outline" style="border-color:rgba(255,255,255,.4);color:white;" href="#">Browse All Deals</a>
+              </div>
+            </div>
+            <div class="slide-visual">💻</div>
+          </div>
+        </div>
+
+        <!-- Slide 2 -->
+        <div class="slide" style="background:linear-gradient(135deg,#0A5C44,#1ABC9C);">
+          <div class="slide-inner">
+            <div class="slide-content">
+              <div class="badge" style="background:rgba(255,255,255,.2);color:#fff;">✈️ Travel Deals</div>
+              <h1 class="slide-title">Fly for Less.<br>Book Smarter.</h1>
+              <p class="slide-desc">Exclusive discounts on flights, hotels & holiday packages. Limited slots!</p>
+              <div style="display:flex;gap:12px;flex-wrap:wrap;">
+                <a class="btn btn-navy" href="#">View Travel Deals</a>
+              </div>
+            </div>
+            <div class="slide-visual">✈️</div>
+          </div>
+        </div>
+
+        <!-- Slide 3 -->
+        <div class="slide" style="background:linear-gradient(135deg,#4A1A7A,#8B45C4);">
+          <div class="slide-inner">
+            <div class="slide-content">
+              <div class="badge" style="background:rgba(255,255,255,.2);color:#fff;">🛍️ Fashion Week</div>
+              <h1 class="slide-title">Style Up to 60%<br>Cheaper Today</h1>
+              <p class="slide-desc">Myntra, AJIO, Nykaa & more — stack codes for maximum savings.</p>
+              <div style="display:flex;gap:12px;flex-wrap:wrap;">
+                <a class="btn btn-primary" href="#">Shop Fashion Deals</a>
+              </div>
+            </div>
+            <div class="slide-visual">👗</div>
+          </div>
+        </div>
+
+      </div>
+
+      <button class="slider-arrow prev" id="prevBtn">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+      </button>
+      <button class="slider-arrow next" id="nextBtn">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+      </button>
+    </div>
+
+    <div class="slide-nav" id="dots"></div>
+  </div>
+
+  <!-- Brand Scroll -->
+  <div class="brand-scroll-wrap" style="margin-top:24px;">
+    <div class="brand-scroll-track" id="brandTrack">
+      <!-- Duplicated for infinite loop -->
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════
+     DAILY OFFERS
+══════════════════════════════════════════════ -->
+<section class="section">
+  <div class="container">
+    <div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:32px;flex-wrap:wrap;gap:12px;">
+      <div>
+        <p class="section-sub" style="margin-bottom:4px;">Handpicked for you today</p>
+        <h2 class="section-title">Daily Offers</h2>
+      </div>
+      <a class="btn btn-outline" href="#">View All Offers →</a>
+    </div>
+
+    <div class="offer-grid" id="offerGrid"></div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════
+     EXCLUSIVE COUPONS
+══════════════════════════════════════════════ -->
+<section class="section exclusive-section">
+  <div class="container">
+    <div style="text-align:center;margin-bottom:40px;">
+      <div class="badge badge-blue" style="margin-bottom:12px;">★ MEMBERS ONLY</div>
+      <h2 class="section-title">Exclusive Coupons</h2>
+      <p class="section-sub">Premium deals curated just for DealZone members</p>
+    </div>
+
+    <div class="exclusive-grid" id="exclGrid"></div>
+
+    <div style="text-align:center;margin-top:40px;">
+      <a class="btn btn-navy" href="#">SEE ALL EXCLUSIVE COUPONS &nbsp;→</a>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════
+     POPULAR STORES
+══════════════════════════════════════════════ -->
+<section class="section" style="background:var(--white);">
+  <div class="container">
+    <div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:32px;flex-wrap:wrap;gap:12px;">
+      <div>
+        <p class="section-sub" style="margin-bottom:4px;">Top picks this month</p>
+        <h2 class="section-title">Popular Stores</h2>
+      </div>
+      <a class="btn btn-outline" href="#">All Stores →</a>
+    </div>
+
+    <div class="stores-layout">
+      <!-- Featured -->
+      <div class="featured-card">
+        <div style="position:relative;z-index:1;">
+          <div class="featured-crown">🛒</div>
+          <div class="featured-badge">Store of the Month</div>
+          <div class="featured-name">Amazon India</div>
+          <p class="featured-sub">World's largest online marketplace. Electronics, fashion, groceries & more.</p>
+          <div class="featured-stats">
+            <div class="stat"><div class="stat-val">140+</div><div class="stat-lbl">Coupons</div></div>
+            <div class="stat"><div class="stat-val">38</div><div class="stat-lbl">Active Deals</div></div>
+          </div>
+          <a class="btn btn-primary" href="#">Explore Deals</a>
+        </div>
+      </div>
+
+      <!-- Store Grid -->
+      <div class="stores-grid" id="storesGrid"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════
+     FOOTER
+══════════════════════════════════════════════ -->
+<footer>
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <span class="nav-logo">Deal<span>Zone</span></span>
+        <p>Your one-stop destination for the best coupons, promo codes, and exclusive deals from 500+ top brands.</p>
+        <div class="social-row">
+          <div class="social-btn">f</div>
+          <div class="social-btn">in</div>
+          <div class="social-btn">𝕏</div>
+          <div class="social-btn">▶</div>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <div class="footer-links">
+          <a href="#">Today's Deals</a>
+          <a href="#">Exclusive Coupons</a>
+          <a href="#">Travel Offers</a>
+          <a href="#">All Stores</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <div class="footer-links">
+          <a href="#">Blog</a>
+          <a href="#">About Us</a>
+          <a href="#">Contact Us</a>
+          <a href="#">Advertise</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <div class="footer-links">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Disclaimer</a>
+          <a href="#">Terms of Use</a>
+          <a href="#">Cookie Policy</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 DealZone. All rights reserved.</span>
+      <div class="footer-bottom-links">
+        <a href="#">Sitemap</a>
+        <a href="#">RSS Feed</a>
+        <a href="#">Help Center</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
