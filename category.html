@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DealZone – Electronics Deals & Coupons</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════
+     NAVBAR
+═══════════════════════════════════════════ -->
+<nav class="navbar" id="navbar">
+  <div class="nav-wrap">
+    <a class="nav-logo" href="#">Deal<span>Zone</span></a>
+
+    <div class="nav-links">
+      <!-- Categories with Mega Menu -->
+      <div class="nav-item" id="categoriesItem">
+        <button class="nav-link active" onclick="categoryPage.toggleMega()">
+          Categories
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+        </button>
+        <div class="mega-menu" id="megaMenu">
+          <div class="mega-header">
+            <span class="mega-title">Browse All Categories</span>
+            <span style="font-size:.8rem;color:var(--blue);font-weight:600;cursor:pointer">View All →</span>
+          </div>
+          <div class="mega-grid">
+            <!-- Electronics -->
+            <div class="mega-col">
+              <div class="mega-col-title">
+                <div class="mega-col-icon" style="background:#EFF6FF">💻</div>
+                Electronics
+              </div>
+              <div class="mega-link" onclick="categoryPage.filterBySubcat('mobiles')">📱 Mobiles <span class="mega-link-badge badge badge-new">NEW</span></div>
+              <div class="mega-link" onclick="categoryPage.filterBySubcat('laptops')">💻 Laptops</div>
+              <div class="mega-link" onclick="categoryPage.filterBySubcat('tablets')">📟 Tablets</div>
+              <div class="mega-link" onclick="categoryPage.filterBySubcat('wearables')">⌚ Smart Watches</div>
+              <div class="mega-link" onclick="categoryPage.filterBySubcat('accessories')">🎧 Accessories <span class="mega-link-badge badge badge-hot">HOT</span></div>
+              <div class="mega-link" onclick="categoryPage.filterBySubcat('cameras')">📷 Cameras</div>
+            </div>
+            <!-- Fashion -->
+            <div class="mega-col">
+              <div class="mega-col-title">
+                <div class="mega-col-icon" style="background:#FFF0F4">👗</div>
+                Fashion
+              </div>
+              <div class="mega-link" onclick="categoryPage.setPage('fashion')">👔 Men's Fashion</div>
+              <div class="mega-link" onclick="categoryPage.setPage('fashion')">👗 Women's Fashion</div>
+              <div class="mega-link" onclick="categoryPage.setPage('fashion')">🧒 Kids Wear</div>
+              <div class="mega-link" onclick="categoryPage.setPage('fashion')">👟 Footwear <span class="mega-link-badge badge badge-hot">HOT</span></div>
+              <div class="mega-link" onclick="categoryPage.setPage('fashion')">👜 Handbags</div>
+              <div class="mega-link" onclick="categoryPage.setPage('fashion')">💄 Beauty</div>
+            </div>
+            <!-- Travel -->
+            <div class="mega-col">
+              <div class="mega-col-title">
+                <div class="mega-col-icon" style="background:#FFF0F0">✈️</div>
+                Travel
+              </div>
+              <div class="mega-link" onclick="categoryPage.setPage('travel')">✈️ Flights</div>
+              <div class="mega-link" onclick="categoryPage.setPage('travel')">🏨 Hotels <span class="mega-link-badge badge badge-new">NEW</span></div>
+              <div class="mega-link" onclick="categoryPage.setPage('travel')">🏝️ Holiday Packages</div>
+              <div class="mega-link" onclick="categoryPage.setPage('travel')">🚕 Cabs</div>
+              <div class="mega-link" onclick="categoryPage.setPage('travel')">🚂 Train Tickets</div>
+              <div class="mega-link" onclick="categoryPage.setPage('travel')">⛴️ Cruises</div>
+            </div>
+            <!-- More -->
+            <div class="mega-col">
+              <div class="mega-col-title">
+                <div class="mega-col-icon" style="background:#F0FFF4">🍕</div>
+                More
+              </div>
+              <div class="mega-link" onclick="categoryPage.setPage('food')">🍕 Food Delivery</div>
+              <div class="mega-link" onclick="categoryPage.setPage('gaming')">🎮 Gaming <span class="mega-link-badge badge badge-hot">HOT</span></div>
+              <div class="mega-link" onclick="categoryPage.setPage('subs')">📺 Subscriptions</div>
+              <div class="mega-link" onclick="categoryPage.setPage('health')">💊 Health & Beauty</div>
+              <div class="mega-link" onclick="categoryPage.setPage('edu')">📚 Education</div>
+              <div class="mega-link" onclick="categoryPage.setPage('finance')">💳 Finance</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <button class="nav-link">Travel</button>
+      <button class="nav-link">Today's Deals</button>
+      <button class="nav-link">Exclusive</button>
+      <button class="nav-link">Blog</button>
+    </div>
+
+    <div class="nav-search">
+      <input type="text" id="navSearchInput" placeholder="Search deals & coupons…" oninput="categoryPage.liveSearch(this.value)">
+      <button class="nav-search-btn">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      </button>
+    </div>
+
+    <button class="ham" id="ham" onclick="categoryPage.openDrawer()">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- ═══════════════════════════════════════════
+     MOBILE DRAWER
+═══════════════════════════════════════════ -->
+<div class="drawer-overlay" id="drawerOverlay" onclick="categoryPage.closeDrawer()"></div>
+<div class="drawer" id="drawer">
+  <div class="drawer-header">
+    <div class="drawer-logo">Deal<span>Zone</span></div>
+    <button class="drawer-close" onclick="categoryPage.closeDrawer()">✕</button>
+  </div>
+  <div class="drawer-search">
+    <input type="text" placeholder="Search deals…">
+    <button><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></button>
+  </div>
+  <nav class="drawer-nav">
+    <div class="drawer-item active">🏠 Home</div>
+    <!-- Categories accordion -->
+    <div class="drawer-item" id="drawer-cat-btn" onclick="categoryPage.toggleDrawerCat()">
+      📂 Categories <span class="drawer-arrow">›</span>
+    </div>
+    <div class="drawer-sub" id="drawer-cat-sub">
+      <div class="drawer-sub-title">💻 Electronics</div>
+      <div class="drawer-sub-link" onclick="categoryPage.filterBySubcat('mobiles');categoryPage.closeDrawer()">📱 Mobiles</div>
+      <div class="drawer-sub-link" onclick="categoryPage.filterBySubcat('laptops');categoryPage.closeDrawer()">💻 Laptops</div>
+      <div class="drawer-sub-link" onclick="categoryPage.filterBySubcat('tablets');categoryPage.closeDrawer()">📟 Tablets</div>
+      <div class="drawer-sub-link" onclick="categoryPage.filterBySubcat('wearables');categoryPage.closeDrawer()">⌚ Smart Watches</div>
+      <div class="drawer-sub-link" onclick="categoryPage.filterBySubcat('accessories');categoryPage.closeDrawer()">🎧 Accessories</div>
+      <div class="drawer-sub-title">👗 Fashion</div>
+      <div class="drawer-sub-link" onclick="categoryPage.closeDrawer()">👔 Men's Fashion</div>
+      <div class="drawer-sub-link" onclick="categoryPage.closeDrawer()">👗 Women's Fashion</div>
+      <div class="drawer-sub-link" onclick="categoryPage.closeDrawer()">👟 Footwear</div>
+      <div class="drawer-sub-title">✈️ Travel</div>
+      <div class="drawer-sub-link" onclick="categoryPage.closeDrawer()">✈️ Flights</div>
+      <div class="drawer-sub-link" onclick="categoryPage.closeDrawer()">🏨 Hotels</div>
+      <div class="drawer-sub-title">🍕 More</div>
+      <div class="drawer-sub-link" onclick="categoryPage.closeDrawer()">🍕 Food Delivery</div>
+      <div class="drawer-sub-link" onclick="categoryPage.closeDrawer()">🎮 Gaming</div>
+    </div>
+    <div class="drawer-item">✈️ Travel</div>
+    <div class="drawer-item">⚡ Today's Deals</div>
+    <div class="drawer-item">⭐ Exclusive</div>
+    <div class="drawer-item">📝 Blog</div>
+  </nav>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     CATEGORY HERO
+═══════════════════════════════════════════ -->
+<section class="cat-hero" id="catHero">
+  <div class="cat-hero-glow"></div>
+  <div class="cat-hero-grid"></div>
+  <div class="cat-hero-inner">
+    <div class="container">
+      <div class="cat-breadcrumb">
+        <span>Home</span><span class="sep">/</span>
+        <span>Categories</span><span class="sep">/</span>
+        <span class="current" id="breadcrumbCurrent">Electronics</span>
+      </div>
+      <div class="cat-title-row">
+        <div class="cat-icon-wrap" id="catHeroIcon">💻</div>
+        <div>
+          <h1 class="cat-title" id="catHeroTitle">Electronics Deals</h1>
+        </div>
+      </div>
+      <p class="cat-subtitle" id="catHeroSub">Discover the best verified coupons and deals on laptops, mobiles, tablets, accessories and more from top electronics brands across India.</p>
+      <div class="cat-hero-stats">
+        <div>
+          <span class="hero-stat-val" id="heroStatDeals">186</span>
+          <span class="hero-stat-lbl">Active Deals</span>
+        </div>
+        <div>
+          <span class="hero-stat-val" id="heroStatStores">42</span>
+          <span class="hero-stat-lbl">Stores</span>
+        </div>
+        <div>
+          <span class="hero-stat-val" id="heroStatMax">Up to 75%</span>
+          <span class="hero-stat-lbl">Max Discount</span>
+        </div>
+        <div>
+          <span class="hero-stat-val">Today</span>
+          <span class="hero-stat-lbl">Last Updated</span>
+        </div>
+      </div>
+      <!-- Sub-category pills -->
+      <div class="cat-subcat-row" id="subcatRow"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     STICKY FILTER BAR
+═══════════════════════════════════════════ -->
+<div class="filter-bar-wrap" id="filterBar">
+  <div class="filter-bar-inner">
+    <!-- Sort -->
+    <div class="sort-wrap" id="sortWrap">
+      <button class="sort-btn" id="sortBtn" onclick="categoryPage.toggleSort()">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M7 12h10M11 18h2"/></svg>
+        Sort: <span id="sortLabel">Popular</span>
+        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+      </button>
+      <div class="sort-dropdown" id="sortDropdown">
+        <div class="sort-option selected" onclick="categoryPage.setSort('Popular')">🔥 Most Popular <span class="check">✓</span></div>
+        <div class="sort-option" onclick="categoryPage.setSort('Latest')">🆕 Latest First</div>
+        <div class="sort-option" onclick="categoryPage.setSort('Discount')">💸 Highest Discount</div>
+        <div class="sort-option" onclick="categoryPage.setSort('Expiry')">⏳ Expiring Soon</div>
+        <div class="sort-option" onclick="categoryPage.setSort('Success')">⭐ Success Rate</div>
+      </div>
+    </div>
+
+    <div class="filter-divider"></div>
+
+    <!-- Filter chips -->
+    <button class="f-chip" id="fc-budget" onclick="categoryPage.toggleChip('budget','green')" data-active="false">
+      💰 Under ₹500
+    </button>
+    <button class="f-chip" id="fc-big" onclick="categoryPage.toggleChip('big','red')" data-active="false">
+      🔥 50%+ Off
+    </button>
+    <button class="f-chip" id="fc-verified" onclick="categoryPage.toggleChip('verified','green')" data-active="false">
+      ✓ Verified Only
+    </button>
+    <button class="f-chip" id="fc-limited" onclick="categoryPage.toggleChip('limited','orange')" data-active="false">
+      ⏳ Limited Time
+    </button>
+    <button class="f-chip" id="fc-exclusive" onclick="categoryPage.toggleChip('exclusive','purple')" data-active="false">
+      ⭐ Exclusive
+    </button>
+    <button class="f-chip" id="fc-coupon" onclick="categoryPage.toggleChip('coupon','')" data-active="false">
+      🎫 Coupons Only
+    </button>
+
+    <button class="clear-all-btn" id="clearAllBtn" onclick="categoryPage.clearAll()" style="display:none">
+      Clear All ✕
+    </button>
+
+    <div class="filter-result-count">
+      Showing <b id="resultCount">18</b> deals
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     MAIN CONTENT
+═══════════════════════════════════════════ -->
+<main class="main-section">
+  <div class="container">
+    <div class="page-layout">
+
+      <!-- ── LEFT SIDEBAR ── -->
+      <aside class="sidebar-filters" id="sidebarFilters">
+        <div class="sf-head">
+          <span class="sf-title">Filters</span>
+          <button class="sf-clear" onclick="categoryPage.clearAll()">Clear All</button>
+        </div>
+
+        <!-- Discount Range -->
+        <div class="sf-section">
+          <div class="sf-section-title">Discount Range</div>
+          <div class="sf-option" onclick="categoryPage.toggleSF(this)">
+            <div class="sf-option-left"><div class="sf-checkbox"></div>10% – 30% off</div>
+            <span class="sf-count">42</span>
+          </div>
+          <div class="sf-option" onclick="categoryPage.toggleSF(this)">
+            <div class="sf-option-left"><div class="sf-checkbox checked"></div>30% – 50% off</div>
+            <span class="sf-count">68</span>
+          </div>
+          <div class="sf-option" onclick="categoryPage.toggleSF(this)">
+            <div class="sf-option-left"><div class="sf-checkbox checked"></div>50% – 70% off</div>
+            <span class="sf-count">34</span>
+          </div>
+          <div class="sf-option" onclick="categoryPage.toggleSF(this)">
+            <div class="sf-option-left"><div class="sf-checkbox"></div>70%+ off</div>
+            <span class="sf-count">18</span>
+          </div>
+        </div>
+
+        <!-- Sub Categories -->
+        <div class="sf-section">
+          <div class="sf-section-title">Sub-Category</div>
+          <div class="sf-option" onclick="categoryPage.toggleSF(this);categoryPage.filterBySubcat('mobiles')">
+            <div class="sf-option-left"><div class="sf-checkbox checked"></div>📱 Mobiles</div>
+            <span class="sf-count">48</span>
+          </div>
+          <div class="sf-option" onclick="categoryPage.toggleSF(this);categoryPage.filterBySubcat('laptops')">
+            <div class="sf-option-left"><div class="sf-checkbox checked"></div>💻 Laptops</div>
+            <span class="sf-count">36</span>
+          </div>
+          <div class="sf-option" onclick="categoryPage.toggleSF(this);categoryPage.filterBySubcat('tablets')">
+            <div class="sf-option-left"><div class="sf-checkbox"></div>📟 Tablets</div>
+            <span class="sf-count">22</span>
+          </div>
+          <div class="sf-option" onclick="categoryPage.toggleSF(this);categoryPage.filterBySubcat('wearables')">
+            <div class="sf-option-left"><div class="sf-checkbox"></div>⌚ Wearables</div>
+            <span class="sf-count">18</span>
+          </div>
+          <div class="sf-option" onclick="categoryPage.toggleSF(this);categoryPage.filterBySubcat('accessories')">
+            <div class="sf-option-left"><div class="sf-checkbox"></div>🎧 Accessories</div>
+            <span class="sf-count">62</span>
+          </div>
+        </div>
+
+        <!-- Stores -->
+        <div class="sf-section">
+          <div class="sf-section-title">Store</div>
+          <div class="sf-option" onclick="categoryPage.toggleSF(this)"><div class="sf-option-left"><div class="sf-checkbox checked"></div>Amazon</div><span class="sf-count">52</span></div>
+          <div class="sf-option" onclick="categoryPage.toggleSF(this)"><div class="sf-option-left"><div class="sf-checkbox"></div>Flipkart</div><span class="sf-count">44</span></div>
+          <div class="sf-option" onclick="categoryPage.toggleSF(this)"><div class="sf-option-left"><div class="sf-checkbox"></div>Croma</div><span class="sf-count">28</span></div>
+          <div class="sf-option" onclick="categoryPage.toggleSF(this)"><div class="sf-option-left"><div class="sf-checkbox"></div>Reliance Digital</div><span class="sf-count">21</span></div>
+          <div class="sf-option" onclick="categoryPage.toggleSF(this)"><div class="sf-option-left"><div class="sf-checkbox"></div>Samsung</div><span class="sf-count">18</span></div>
+          <div class="sf-option" onclick="categoryPage.toggleSF(this)"><div class="sf-option-left"><div class="sf-checkbox"></div>Dell</div><span class="sf-count">15</span></div>
+        </div>
+
+        <!-- Price Range Slider -->
+        <div class="sf-section">
+          <div class="sf-section-title">Max Price</div>
+          <div class="sf-range">
+            <input type="range" class="range-slider" min="0" max="200000" value="100000" step="1000" oninput="categoryPage.updateRange(this)">
+            <div class="range-labels">
+              <span>₹0</span><span id="rangeVal">₹1,00,000</span><span>₹2,00,000</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Coupon Type -->
+        <div class="sf-section">
+          <div class="sf-section-title">Coupon Type</div>
+          <div class="sf-option" onclick="categoryPage.toggleSF(this)"><div class="sf-option-left"><div class="sf-checkbox checked"></div>🎫 Promo Code</div><span class="sf-count">82</span></div>
+          <div class="sf-option" onclick="categoryPage.toggleSF(this)"><div class="sf-option-left"><div class="sf-checkbox checked"></div>⚡ Deal / Offer</div><span class="sf-count">64</span></div>
+          <div class="sf-option" onclick="categoryPage.toggleSF(this)"><div class="sf-option-left"><div class="sf-checkbox"></div>💰 Cashback</div><span class="sf-count">28</span></div>
+          <div class="sf-option" onclick="categoryPage.toggleSF(this)"><div class="sf-option-left"><div class="sf-checkbox"></div>🏦 Bank Offer</div><span class="sf-count">19</span></div>
+        </div>
+      </aside>
+
+      <!-- ── RIGHT DEALS COLUMN ── -->
+      <div class="deals-col">
+        <!-- Grid header -->
+        <div class="grid-header">
+          <div class="grid-header-left">
+            <div class="view-toggle">
+              <button class="view-btn active" id="gridViewBtn" onclick="categoryPage.setView('grid')" title="Grid view">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+              </button>
+              <button class="view-btn" id="listViewBtn" onclick="categoryPage.setView('list')" title="List view">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+              </button>
+            </div>
+            <span id="activeFiltersLabel" style="font-size:.82rem;color:var(--muted)"></span>
+          </div>
+          <button onclick="document.getElementById('sidebarFilters').classList.toggle('mobile-open')"
+            style="display:none;align-items:center;gap:6px;padding:8px 16px;border-radius:50px;border:1.5px solid var(--line);background:#fff;font-size:.82rem;font-weight:600;cursor:pointer"
+            id="filterToggleBtn">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg>
+            Filters
+          </button>
+        </div>
+
+        <!-- Deals Grid -->
+        <div class="deals-grid" id="dealsGrid"></div>
+
+        <!-- Load More -->
+        <div class="load-more-wrap">
+          <button class="load-more-btn" id="loadMoreBtn" onclick="categoryPage.loadMore()">
+            <div class="spinner"></div>
+            <span class="btn-text">Load More Deals</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+          </button>
+          <div class="load-more-progress">
+            Showing <span id="shownCount">18</span> of <span id="totalCount">186</span> deals
+            <div class="progress-bar-wrap">
+              <div class="progress-bar" id="progressBar" style="width:9.7%"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</main>
+
+<!-- ═══════════════════════════════════════════
+     FEATURED STORES
+═══════════════════════════════════════════ -->
+<section class="stores-section" style="background:#fff;padding:40px 0 48px;">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <div class="section-eyebrow">Top picks this category</div>
+        <h2 class="section-title">🏪 Featured Stores</h2>
+      </div>
+      <button style="padding:9px 20px;border-radius:50px;border:2px solid var(--blue);background:transparent;color:var(--blue);font-size:.82rem;font-weight:700;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;" onclick="categoryPage.showToast('Viewing all stores…')">All Stores →</button>
+    </div>
+    <div class="stores-row" id="storesRow"></div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     FOOTER
+═══════════════════════════════════════════ -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <span class="footer-logo">Deal<span class="dot">Zone</span></span>
+        <p class="footer-desc">Your one-stop destination for verified coupons, promo codes, and exclusive deals from 500+ top brands across India.</p>
+        <div class="footer-social">
+          <div class="f-soc">f</div><div class="f-soc">in</div>
+          <div class="f-soc">𝕏</div><div class="f-soc">▶</div>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Quick Links</div>
+        <div class="footer-links">
+          <span>Today's Deals</span><span>All Coupons</span>
+          <span>Top Stores</span><span>Categories</span>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Company</div>
+        <div class="footer-links">
+          <span>Blog</span><span>About Us</span>
+          <span>Contact Us</span><span>Advertise</span>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Legal</div>
+        <div class="footer-links">
+          <span>Privacy Policy</span><span>Disclaimer</span>
+          <span>Terms of Use</span><span>Cookie Policy</span>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 DealZone. All rights reserved.</span>
+      <div><a href="#">Sitemap</a><a href="#">Help</a><a href="#">RSS Feed</a></div>
+    </div>
+  </div>
+</footer>
+
+<!-- Toast -->
+<div class="toast" id="toastEl">
+  <span class="toast-dot"></span>
+  <span id="toastMsg">Done!</span>
+</div>
+<script>console.log('categoryPage before script.js load ->', typeof window.categoryPage);</script>
+<script src="script.js"></script>
+<script>console.log('categoryPage after script.js load ->', typeof window.categoryPage);</script>
+</body>

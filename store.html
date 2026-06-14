@@ -10,9 +10,10 @@
 </head>
 <body>
 
-<!-- ═══════════════════════════════════════════
+<!-- ══════════════════════════════════════════════
      NAVBAR
-═══════════════════════════════════════════ -->
+══════════════════════════════════════════════ -->
+
 <nav class="navbar" id="navbar">
   <div class="nav-wrap">
     <a class="nav-logo" href="#">Deal<span>Zone</span></a>
@@ -148,151 +149,156 @@
   </nav>
 </div>
 
-<!-- ══════════════════════════════════════════════
-     HERO
-══════════════════════════════════════════════ -->
-<section class="hero">
-  <div style="max-width:1240px;margin:0 auto;padding:0 20px;">
-    <div class="slider-wrap" id="heroSlider">
-      <div class="slides" id="slides">
 
-        <!-- Slide 1 -->
-        <div class="slide" style="background:linear-gradient(135deg,#0E3B75,#0056A6);">
-          <div class="slide-inner">
-            <div class="slide-content">
-              <div class="badge badge-teal">🔥 Flash Sale – Today Only</div>
-              <h1 class="slide-title">Up to 70% Off<br>on Tech Gadgets</h1>
-              <p class="slide-desc">Verified coupons from 500+ stores. No signup needed — just save instantly.</p>
-              <div style="display:flex;gap:12px;flex-wrap:wrap;">
-                <a class="btn btn-primary" href="#">Grab Coupons</a>
-                <a class="btn btn-outline" style="border-color:rgba(255,255,255,.4);color:white;" href="#">Browse All Deals</a>
+<!-- ══════ PAGE: STORE ══════════════════════════ -->
+<div id="page-store" class="page active">
+
+  <!-- Store Switcher -->
+  <div style="background:#fff;border-bottom:1.5px solid rgba(14,59,117,.08);padding:12px 0">
+    <div class="container" style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+      <span style="font-size:.82rem;font-weight:600;color:var(--muted)">Browse Store:</span>
+      <button id="btn-amazon" class="btn btn-navy btn-sm" onclick="loadStore('amazon')">🛒 Amazon</button>
+      <button id="btn-flipkart" class="btn btn-outline-blue btn-sm" onclick="loadStore('flipkart')">🛍 Flipkart</button>
+      <button id="btn-myntra" class="btn btn-outline-blue btn-sm" onclick="loadStore('myntra')">👗 Myntra</button>
+    </div>
+  </div>
+
+  <!-- Store Banner -->
+  <div class="store-banner">
+    <div class="store-banner-bg" id="storeBannerBg"></div>
+    <div class="store-banner-pattern"></div>
+    <div class="store-banner-mesh"></div>
+    <div class="store-banner-content">
+      <div class="container">
+        <div class="store-identity">
+          <div class="store-logo-outer">
+            <span class="store-logo-inner" id="storeLogoEl">AZ</span>
+          </div>
+          <div class="store-info">
+            <h1 class="store-name" id="storeNameEl">Amazon India</h1>
+            <div class="store-rating-row">
+              <span class="rating-val" id="storeRatingEl">4.8</span>
+              <div class="star-display" id="storeStarsEl">
+                <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+              </div>
+              <span class="rating-label" id="storeReviewsEl">(12,400 reviews)</span>
+              <span class="verified">Verified Store</span>
+            </div>
+            <p class="store-desc" id="storeDescEl">World's largest online marketplace. Shop electronics, fashion, groceries, books and more. Get exclusive DealZone codes for extra savings every time you order.</p>
+            <div class="store-actions">
+              <button class="btn btn-primary" onclick="toast('Opening Amazon…')">🛒 Visit Store</button>
+              <button class="btn btn-ghost" onclick="toast('Store followed!')">+ Follow Store</button>
+              <button class="btn btn-ghost" onclick="toast('Alert set!')">🔔 Price Alert</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="store-stats-strip">
+      <div class="container">
+        <div class="store-stats-inner" id="storeStatsEl">
+          <div class="stat-item"><span class="stat-val">140+</span><span class="stat-lbl">Active Coupons</span></div>
+          <div class="stat-item"><span class="stat-val">38</span><span class="stat-lbl">Live Deals</span></div>
+          <div class="stat-item"><span class="stat-val">8</span><span class="stat-lbl">Cashback Offers</span></div>
+          <div class="stat-item"><span class="stat-val">92%</span><span class="stat-lbl">Success Rate</span></div>
+          <div class="stat-item"><span class="stat-val">Today</span><span class="stat-lbl">Last Verified</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tab Bar -->
+  <div class="store-tab-bar">
+    <div class="store-tab-inner">
+      <div class="s-tab active" id="tab-btn-coupons" onclick="switchTab('coupons')">
+        🎫 Coupons <span class="s-tab-count">38</span>
+      </div>
+      <div class="s-tab" id="tab-btn-deals" onclick="switchTab('deals')">
+        ⚡ Deals <span class="s-tab-count">22</span>
+      </div>
+      <div class="s-tab" id="tab-btn-cashback" onclick="switchTab('cashback')">
+        💰 Cashback Offers <span class="s-tab-count">8</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Store Body -->
+  <div class="section" style="padding-top:28px">
+    <div class="container">
+      <div class="store-layout">
+
+        <!-- Main Content -->
+        <div>
+          <!-- COUPONS TAB -->
+          <div class="tab-panel active" id="tab-coupons">
+            <div class="coupon-stack" id="couponStack"></div>
+          </div>
+
+          <!-- DEALS TAB -->
+          <div class="tab-panel" id="tab-deals">
+            <div class="deal-mini-grid" id="storeDealsGrid"></div>
+          </div>
+
+          <!-- CASHBACK TAB -->
+          <div class="tab-panel" id="tab-cashback">
+            <div class="coupon-stack" id="cashbackStack"></div>
+          </div>
+        </div>
+
+        <!-- Sidebar -->
+        <div class="sidebar">
+          <div class="s-widget">
+            <div class="s-widget-head">
+              <span class="s-widget-title">🏪 Related Stores</span>
+              <span style="font-size:.78rem;color:var(--blue);cursor:pointer;font-weight:600">View all →</span>
+            </div>
+            <div class="s-widget-body" id="relStoresEl"></div>
+          </div>
+
+          <div class="s-widget">
+            <div class="s-widget-head">
+              <span class="s-widget-title">🔥 Trending Coupons</span>
+            </div>
+            <div class="s-widget-body" id="trendingEl"></div>
+          </div>
+
+          <div class="s-widget">
+            <div class="s-widget-head">
+              <span class="s-widget-title">📂 Browse Categories</span>
+            </div>
+            <div class="s-widget-body">
+              <div class="cat-cloud">
+                <span class="cat-tag">Electronics</span>
+                <span class="cat-tag">Fashion</span>
+                <span class="cat-tag">Grocery</span>
+                <span class="cat-tag">Books</span>
+                <span class="cat-tag">Home</span>
+                <span class="cat-tag">Beauty</span>
+                <span class="cat-tag">Sports</span>
+                <span class="cat-tag">Toys</span>
+                <span class="cat-tag">Travel</span>
+                <span class="cat-tag">Mobiles</span>
               </div>
             </div>
-            <div class="slide-visual">💻</div>
           </div>
-        </div>
 
-        <!-- Slide 2 -->
-        <div class="slide" style="background:linear-gradient(135deg,#0A5C44,#1ABC9C);">
-          <div class="slide-inner">
-            <div class="slide-content">
-              <div class="badge" style="background:rgba(255,255,255,.2);color:#fff;">✈️ Travel Deals</div>
-              <h1 class="slide-title">Fly for Less.<br>Book Smarter.</h1>
-              <p class="slide-desc">Exclusive discounts on flights, hotels & holiday packages. Limited slots!</p>
-              <div style="display:flex;gap:12px;flex-wrap:wrap;">
-                <a class="btn btn-navy" href="#">View Travel Deals</a>
-              </div>
-            </div>
-            <div class="slide-visual">✈️</div>
-          </div>
-        </div>
-
-        <!-- Slide 3 -->
-        <div class="slide" style="background:linear-gradient(135deg,#4A1A7A,#8B45C4);">
-          <div class="slide-inner">
-            <div class="slide-content">
-              <div class="badge" style="background:rgba(255,255,255,.2);color:#fff;">🛍️ Fashion Week</div>
-              <h1 class="slide-title">Style Up to 60%<br>Cheaper Today</h1>
-              <p class="slide-desc">Myntra, AJIO, Nykaa & more — stack codes for maximum savings.</p>
-              <div style="display:flex;gap:12px;flex-wrap:wrap;">
-                <a class="btn btn-primary" href="#">Shop Fashion Deals</a>
-              </div>
-            </div>
-            <div class="slide-visual">👗</div>
+          <div style="background:linear-gradient(135deg,var(--navy),#1A5C9A);border-radius:var(--r);padding:24px;text-align:center">
+            <div style="font-size:2.2rem;margin-bottom:12px">🔔</div>
+            <h4 style="font-family:'Syne',sans-serif;font-weight:700;color:#fff;margin-bottom:8px;font-size:.95rem">Never Miss a Deal</h4>
+            <p style="font-size:.82rem;color:rgba(255,255,255,.65);margin-bottom:16px;line-height:1.55">Get instant alerts when new coupons go live for this store.</p>
+            <button class="btn btn-primary btn-sm" style="width:100%;justify-content:center;border-radius:10px" onclick="toast('Alert activated! ✓')">Enable Alerts</button>
           </div>
         </div>
 
       </div>
-
-      <button class="slider-arrow prev" id="prevBtn">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
-      </button>
-      <button class="slider-arrow next" id="nextBtn">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
-      </button>
-    </div>
-
-    <div class="slide-nav" id="dots"></div>
-  </div>
-
-  <!-- Brand Scroll -->
-  <div class="brand-scroll-wrap" style="margin-top:24px;">
-    <div class="brand-scroll-track" id="brandTrack">
-      <!-- Duplicated for infinite loop -->
     </div>
   </div>
-</section>
+</div>
 
-<!-- ══════════════════════════════════════════════
-     DAILY OFFERS
-══════════════════════════════════════════════ -->
-<section class="section">
-  <div class="container">
-    <div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:32px;flex-wrap:wrap;gap:12px;">
-      <div>
-        <p class="section-sub" style="margin-bottom:4px;">Handpicked for you today</p>
-        <h2 class="section-title">Daily Offers</h2>
-      </div>
-      <a class="btn btn-outline" href="#">View All Offers →</a>
-    </div>
-
-    <div class="offer-grid" id="offerGrid"></div>
-  </div>
-</section>
-
-<!-- ══════════════════════════════════════════════
-     EXCLUSIVE COUPONS
-══════════════════════════════════════════════ -->
-<section class="section exclusive-section">
-  <div class="container">
-    <div style="text-align:center;margin-bottom:40px;">
-      <div class="badge badge-blue" style="margin-bottom:12px;">★ MEMBERS ONLY</div>
-      <h2 class="section-title">Exclusive Coupons</h2>
-      <p class="section-sub">Premium deals curated just for DealZone members</p>
-    </div>
-
-    <div class="exclusive-grid" id="exclGrid"></div>
-
-    <div style="text-align:center;margin-top:40px;">
-      <a class="btn btn-navy" href="#">SEE ALL EXCLUSIVE COUPONS &nbsp;→</a>
-    </div>
-  </div>
-</section>
-
-<!-- ══════════════════════════════════════════════
-     POPULAR STORES
-══════════════════════════════════════════════ -->
-<section class="section" style="background:var(--white);">
-  <div class="container">
-    <div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:32px;flex-wrap:wrap;gap:12px;">
-      <div>
-        <p class="section-sub" style="margin-bottom:4px;">Top picks this month</p>
-        <h2 class="section-title">Popular Stores</h2>
-      </div>
-      <a class="btn btn-outline" href="#">All Stores →</a>
-    </div>
-
-    <div class="stores-layout">
-      <!-- Featured -->
-      <div class="featured-card">
-        <div style="position:relative;z-index:1;">
-          <div class="featured-crown">🛒</div>
-          <div class="featured-badge">Store of the Month</div>
-          <div class="featured-name">Amazon India</div>
-          <p class="featured-sub">World's largest online marketplace. Electronics, fashion, groceries & more.</p>
-          <div class="featured-stats">
-            <div class="stat"><div class="stat-val">140+</div><div class="stat-lbl">Coupons</div></div>
-            <div class="stat"><div class="stat-val">38</div><div class="stat-lbl">Active Deals</div></div>
-          </div>
-          <a class="btn btn-primary" href="#">Explore Deals</a>
-        </div>
-      </div>
-
-      <!-- Store Grid -->
-      <div class="stores-grid" id="storesGrid"></div>
-    </div>
-  </div>
-</section>
+<div class="toast" id="toastEl">
+  <span class="toast-icon">✓</span>
+  <span id="toastMsg">Done!</span>
+</div>
 
 <!-- ══════════════════════════════════════════════
      FOOTER
@@ -350,5 +356,7 @@
 </footer>
 
 <script src="script.js"></script>
+<script src="store.js"></script>
+
 </body>
 </html>
