@@ -740,3 +740,4 @@ document.querySelectorAll('.offer-card, .excl-card, .store-card').forEach(el => 
     if (document.getElementById('dealsGrid')) categoryPage.init();
   });
 })();
+

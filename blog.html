@@ -3,11 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>DealZone – Hottest Coupons & Offers</title>
+<title>DealZone Blog – Saving Tips & Guides</title>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/lucide/0.263.1/umd/lucide.min.js"></script>
 <link rel="stylesheet" href="style.css">
-</head>
+<link rel="stylesheet" href="blog.css"> </head>
 <body>
 
 <!-- ═══════════════════════════════════════════
@@ -148,121 +147,46 @@
   </nav>
 </div>
 
-<!-- ══════════════════════════════════════════════
-     HERO
-══════════════════════════════════════════════ -->
-<section class="hero">
-  <div style="max-width:1240px;margin:0 auto;padding:0 20px;">
-    <div class="slider-wrap" id="heroSlider">
-      <div class="slides" id="slides">
+<section class="blog-hero">
+  <div class="container">
+    <h1 class="blog-hero-title">Savings Hub & Expert Tips</h1>
+    <p class="blog-hero-sub">Read our latest guides, shopping hacks, and product reviews to maximize your savings.</p>
+    
+    <div class="blog-controls">
+      <div class="blog-search">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="blogSearch" placeholder="Search articles..." oninput="blogPage.handleSearch(this.value)">
+      </div>
+      <div class="blog-categories" id="blogCategories">
+        <button class="cat-pill active" onclick="blogPage.filterCategory('All', this)">All</button>
+        <button class="cat-pill" onclick="blogPage.filterCategory('Shopping Hacks', this)">Shopping Hacks</button>
+        <button class="cat-pill" onclick="blogPage.filterCategory('Tech', this)">Tech</button>
+        <button class="cat-pill" onclick="blogPage.filterCategory('Travel', this)">Travel</button>
+        <button class="cat-pill" onclick="blogPage.filterCategory('Finance', this)">Finance</button>
+      </div>
+    </div>
+  </div>
+</section>
 
-      <div class="slide" style="padding: 0; background: transparent;">
-  <img src="https://images.unsplash.com/photo-1607082349566-187342175e2f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80" 
-       alt="Mega Sale and Shopping Bags" 
-       style="width: 100%; height: 400px; object-fit: cover; display: block; border-radius: 16px;">
-</div>
+<section class="section" style="padding-top: 20px;">
+  <div class="container">
+    
+    <div class="blog-empty-state" id="emptyState" style="display: none;">
+      <div class="empty-icon">📝</div>
+      <h3>No articles found</h3>
+      <p>We couldn't find any posts matching your search or category.</p>
+      <button class="btn btn-navy" onclick="blogPage.resetFilters()">Clear Filters</button>
+    </div>
 
-<div class="slide" style="padding: 0; background: transparent;">
-  <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80" 
-       alt="Online Checkout and Payment" 
-       style="width: 100%; height: 400px; object-fit: cover; display: block; border-radius: 16px;">
-</div>
-
-<div class="slide" style="padding: 0; background: transparent;">
-  <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80" 
-       alt="Premium Retail Storefront" 
-       style="width: 100%; height: 400px; object-fit: cover; display: block; border-radius: 16px;">
-</div>
-
+    <div class="blog-grid" id="blogGrid">
       </div>
 
-      <button class="slider-arrow prev" id="prevBtn">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+    <div class="load-more-wrap" id="loadMoreWrap" style="margin-top: 48px;">
+      <button class="load-more-btn" id="loadMoreBtn" onclick="blogPage.loadMore()">
+        <span class="btn-text">Load More Articles</span>
       </button>
-      <button class="slider-arrow next" id="nextBtn">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
-      </button>
     </div>
 
-    <div class="slide-nav" id="dots"></div>
-  </div>
-
-  <!-- Brand Scroll -->
-  <div class="brand-scroll-wrap" style="margin-top:24px;">
-    <div class="brand-scroll-track" id="brandTrack">
-      <!-- Duplicated for infinite loop -->
-    </div>
-  </div>
-</section>
-
-<!-- ══════════════════════════════════════════════
-     DAILY OFFERS
-══════════════════════════════════════════════ -->
-<section class="section">
-  <div class="container">
-    <div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:32px;flex-wrap:wrap;gap:12px;">
-      <div>
-        <p class="section-sub" style="margin-bottom:4px;">Handpicked for you today</p>
-        <h2 class="section-title">Daily Offers</h2>
-      </div>
-      <a class="btn btn-outline" href="#">View All Offers →</a>
-    </div>
-
-    <div class="offer-grid" id="offerGrid"></div>
-  </div>
-</section>
-
-<!-- ══════════════════════════════════════════════
-     EXCLUSIVE COUPONS
-══════════════════════════════════════════════ -->
-<section class="section exclusive-section">
-  <div class="container">
-    <div style="text-align:center;margin-bottom:40px;">
-      <div class="badge badge-blue" style="margin-bottom:12px;">★ MEMBERS ONLY</div>
-      <h2 class="section-title">Exclusive Coupons</h2>
-      <p class="section-sub">Premium deals curated just for DealZone members</p>
-    </div>
-
-    <div class="exclusive-grid" id="exclGrid"></div>
-
-    <div style="text-align:center;margin-top:40px;">
-      <a class="btn btn-navy" href="#">SEE ALL EXCLUSIVE COUPONS &nbsp;→</a>
-    </div>
-  </div>
-</section>
-
-<!-- ══════════════════════════════════════════════
-     POPULAR STORES
-══════════════════════════════════════════════ -->
-<section class="section" style="background:var(--white);">
-  <div class="container">
-    <div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:32px;flex-wrap:wrap;gap:12px;">
-      <div>
-        <p class="section-sub" style="margin-bottom:4px;">Top picks this month</p>
-        <h2 class="section-title">Popular Stores</h2>
-      </div>
-      <a class="btn btn-outline" href="#">All Stores →</a>
-    </div>
-
-    <div class="stores-layout">
-      <!-- Featured -->
-      <div class="featured-card">
-        <div style="position:relative;z-index:1;">
-          <div class="featured-crown">🛒</div>
-          <div class="featured-badge">Store of the Month</div>
-          <div class="featured-name">Amazon India</div>
-          <p class="featured-sub">World's largest online marketplace. Electronics, fashion, groceries & more.</p>
-          <div class="featured-stats">
-            <div class="stat"><div class="stat-val">140+</div><div class="stat-lbl">Coupons</div></div>
-            <div class="stat"><div class="stat-val">38</div><div class="stat-lbl">Active Deals</div></div>
-          </div>
-          <a class="btn btn-primary" href="#">Explore Deals</a>
-        </div>
-      </div>
-
-      <!-- Store Grid -->
-      <div class="stores-grid" id="storesGrid"></div>
-    </div>
   </div>
 </section>
 
@@ -322,5 +246,9 @@
 </footer>
 
 <script src="script.js"></script>
+<script src="blog.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', () => blogPage.init());
+</script>
 </body>
 </html>

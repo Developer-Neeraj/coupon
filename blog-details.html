@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>DealZone – Hottest Coupons & Offers</title>
+<title>Ultimate Guide to Black Friday – DealZone Blog</title>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/lucide/0.263.1/umd/lucide.min.js"></script>
 <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="blog.css">
 </head>
 <body>
 
@@ -148,123 +148,107 @@
   </nav>
 </div>
 
-<!-- ══════════════════════════════════════════════
-     HERO
-══════════════════════════════════════════════ -->
-<section class="hero">
-  <div style="max-width:1240px;margin:0 auto;padding:0 20px;">
-    <div class="slider-wrap" id="heroSlider">
-      <div class="slides" id="slides">
-
-      <div class="slide" style="padding: 0; background: transparent;">
-  <img src="https://images.unsplash.com/photo-1607082349566-187342175e2f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80" 
-       alt="Mega Sale and Shopping Bags" 
-       style="width: 100%; height: 400px; object-fit: cover; display: block; border-radius: 16px;">
-</div>
-
-<div class="slide" style="padding: 0; background: transparent;">
-  <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80" 
-       alt="Online Checkout and Payment" 
-       style="width: 100%; height: 400px; object-fit: cover; display: block; border-radius: 16px;">
-</div>
-
-<div class="slide" style="padding: 0; background: transparent;">
-  <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80" 
-       alt="Premium Retail Storefront" 
-       style="width: 100%; height: 400px; object-fit: cover; display: block; border-radius: 16px;">
-</div>
-
-      </div>
-
-      <button class="slider-arrow prev" id="prevBtn">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
-      </button>
-      <button class="slider-arrow next" id="nextBtn">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
-      </button>
-    </div>
-
-    <div class="slide-nav" id="dots"></div>
-  </div>
-
-  <!-- Brand Scroll -->
-  <div class="brand-scroll-wrap" style="margin-top:24px;">
-    <div class="brand-scroll-track" id="brandTrack">
-      <!-- Duplicated for infinite loop -->
-    </div>
-  </div>
-</section>
-
-<!-- ══════════════════════════════════════════════
-     DAILY OFFERS
-══════════════════════════════════════════════ -->
-<section class="section">
+<section class="section blog-details-section">
   <div class="container">
-    <div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:32px;flex-wrap:wrap;gap:12px;">
-      <div>
-        <p class="section-sub" style="margin-bottom:4px;">Handpicked for you today</p>
-        <h2 class="section-title">Daily Offers</h2>
-      </div>
-      <a class="btn btn-outline" href="#">View All Offers →</a>
+    
+    <div class="blog-breadcrumb">
+      <a href="blog.html" class="back-link">← Back to Blog</a>
+      <span class="sep">/</span>
+      <span class="cat">Shopping Hacks</span>
     </div>
 
-    <div class="offer-grid" id="offerGrid"></div>
-  </div>
-</section>
-
-<!-- ══════════════════════════════════════════════
-     EXCLUSIVE COUPONS
-══════════════════════════════════════════════ -->
-<section class="section exclusive-section">
-  <div class="container">
-    <div style="text-align:center;margin-bottom:40px;">
-      <div class="badge badge-blue" style="margin-bottom:12px;">★ MEMBERS ONLY</div>
-      <h2 class="section-title">Exclusive Coupons</h2>
-      <p class="section-sub">Premium deals curated just for DealZone members</p>
-    </div>
-
-    <div class="exclusive-grid" id="exclGrid"></div>
-
-    <div style="text-align:center;margin-top:40px;">
-      <a class="btn btn-navy" href="#">SEE ALL EXCLUSIVE COUPONS &nbsp;→</a>
-    </div>
-  </div>
-</section>
-
-<!-- ══════════════════════════════════════════════
-     POPULAR STORES
-══════════════════════════════════════════════ -->
-<section class="section" style="background:var(--white);">
-  <div class="container">
-    <div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:32px;flex-wrap:wrap;gap:12px;">
-      <div>
-        <p class="section-sub" style="margin-bottom:4px;">Top picks this month</p>
-        <h2 class="section-title">Popular Stores</h2>
-      </div>
-      <a class="btn btn-outline" href="#">All Stores →</a>
-    </div>
-
-    <div class="stores-layout">
-      <!-- Featured -->
-      <div class="featured-card">
-        <div style="position:relative;z-index:1;">
-          <div class="featured-crown">🛒</div>
-          <div class="featured-badge">Store of the Month</div>
-          <div class="featured-name">Amazon India</div>
-          <p class="featured-sub">World's largest online marketplace. Electronics, fashion, groceries & more.</p>
-          <div class="featured-stats">
-            <div class="stat"><div class="stat-val">140+</div><div class="stat-lbl">Coupons</div></div>
-            <div class="stat"><div class="stat-val">38</div><div class="stat-lbl">Active Deals</div></div>
+    <div class="blog-layout">
+      <article class="blog-main">
+        <h1 class="blog-detail-title">The Ultimate Guide to Maximizing Black Friday Savings in 2025</h1>
+        
+        <div class="blog-author-bar">
+          <div class="author-profile">
+            <img src="https://i.pravatar.cc/100?img=12" alt="Author" class="author-avatar-lg">
+            <div class="author-meta">
+              <span class="author-name">Sarah Jenkins</span>
+              <span class="author-date">Oct 12, 2025 <span class="dot">•</span> 6 min read</span>
+            </div>
           </div>
-          <a class="btn btn-primary" href="#">Explore Deals</a>
+          
+          <div class="blog-social-share">
+            <button class="share-btn" title="Share on Twitter">𝕏</button>
+            <button class="share-btn" title="Share on Facebook">f</button>
+            <button class="share-btn" title="Share on LinkedIn">in</button>
+            <button class="share-btn" title="Copy Link">🔗</button>
+          </div>
         </div>
-      </div>
 
-      <!-- Store Grid -->
-      <div class="stores-grid" id="storesGrid"></div>
+        <img src="https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?auto=format&fit=crop&w=1200&q=80" alt="Black Friday" class="blog-featured-img">
+
+        <div class="rich-content">
+          <p>Black Friday is no longer just a single day of frantic shopping; it's a month-long marathon of deals. To truly score the best discounts without falling for fake markdowns, you need a solid strategy. Here’s how the experts at DealZone prepare for the biggest shopping event of the year.</p>
+          
+          <h2>1. Start Tracking Prices Early</h2>
+          <p>Retailers are notorious for artificially inflating prices in October just to "discount" them in November. Use tools like CamelCamelCamel for Amazon or rely on DealZone's price tracking alerts to know if you're actually getting a bargain.</p>
+          
+          <blockquote>"The best deal isn't the highest percentage off; it's the lowest historical price for a product you actually need." – DealZone Editors</blockquote>
+          
+          <h2>2. Stack Your Coupons</h2>
+          <p>Why settle for just a sale price? Here is a simple stacking checklist:</p>
+          <ul>
+            <li><strong>Store Discounts:</strong> The primary Black Friday markdown.</li>
+            <li><strong>Promo Codes:</strong> Apply a DealZone exclusive code at checkout.</li>
+            <li><strong>Bank Offers:</strong> Use specific credit cards (like HDFC or SBI) for an extra 10% instant discount.</li>
+            <li><strong>Cashback:</strong> Route your purchase through a cashback portal.</li>
+          </ul>
+
+          <p>By preparing your wishlists early and setting up deal alerts, you can secure the items you want before they sell out.</p>
+        </div>
+
+        <div class="blog-tags">
+          <span class="blog-tag">#BlackFriday</span>
+          <span class="blog-tag">#SavingTips</span>
+          <span class="blog-tag">#Deals</span>
+        </div>
+      </article>
+
+      <aside class="blog-sidebar">
+        <div class="s-widget">
+          <div class="s-widget-head"><span class="s-widget-title">Search Blog</span></div>
+          <div class="s-widget-body">
+            <div class="nav-search" style="width:100%; border-color:var(--line);">
+              <input type="text" placeholder="Search..." style="color:var(--text);">
+            </div>
+          </div>
+        </div>
+
+        <div class="s-widget">
+          <div class="s-widget-head"><span class="s-widget-title">⏱️ Recent Posts</span></div>
+          <div class="s-widget-body">
+            <a href="#" class="recent-post-row">
+              <img src="https://images.unsplash.com/photo-1512428559087-560fa5ceab42?auto=format&fit=crop&w=150&q=80" alt="Tech">
+              <div class="rp-info">
+                <h4>Top 5 Laptops for Students Under ₹50k</h4>
+                <span>Oct 10, 2025</span>
+              </div>
+            </a>
+            <a href="#" class="recent-post-row">
+              <img src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=150&q=80" alt="Travel">
+              <div class="rp-info">
+                <h4>How to Score Cheap Flights for New Year</h4>
+                <span>Oct 08, 2025</span>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <div style="background:linear-gradient(135deg,var(--navy),#1A5C9A);border-radius:var(--r);padding:24px;text-align:center; color: white;">
+          <div style="font-size:2.2rem;margin-bottom:12px">✉️</div>
+          <h4 style="font-family:'Syne',sans-serif;font-weight:700;margin-bottom:8px;">Join 50k+ Subscribers</h4>
+          <p style="font-size:.82rem;color:rgba(255,255,255,.7);margin-bottom:16px;">Get the best hacks and exclusive coupons delivered straight to your inbox.</p>
+          <input type="email" placeholder="Email address" style="width:100%; padding:10px; border-radius:8px; border:none; margin-bottom:12px; outline:none;">
+          <button class="btn btn-primary" style="width:100%; justify-content:center;">Subscribe Now</button>
+        </div>
+      </aside>
     </div>
   </div>
 </section>
+
 
 <!-- ══════════════════════════════════════════════
      FOOTER

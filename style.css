@@ -122,7 +122,7 @@ h1,h2,h3,h4 { font-family: 'Syne', sans-serif; }
   background: var(--teal); border: none; cursor: pointer;
   padding: 10px 16px; color: var(--white); transition: background .2s;
 }
-.nav-search-btn:hover { background: var(--teal-dark); }
+/* .nav-search-btn:hover { background: var(--teal-dark); } */
 .hamburger {
   display: none; flex-direction: column; gap: 5px;
   cursor: pointer; padding: 8px; background: none; border: none;
@@ -168,13 +168,14 @@ h1,h2,h3,h4 { font-family: 'Syne', sans-serif; }
 
 /* ── HERO SLIDER ── */
 .hero { background: var(--navy); padding: 32px 0 0; overflow: hidden; }
-.slider-wrap { position: relative; border-radius: var(--radius); overflow: hidden; margin: 0 20px; }
+.slider-wrap { position: relative; border-radius: var(--radius); overflow: hidden; margin: 0 auto; }
 .slides { display: flex; transition: transform .6s cubic-bezier(.77,0,.175,1); }
 .slide {
   min-width: 100%; position: relative;
   background: linear-gradient(135deg, var(--blue), var(--navy));
   border-radius: var(--radius); overflow: hidden;
 }
+.slide img { width: 100%; height: auto; display: block; }
 .slide-inner {
   display: flex; align-items: center; justify-content: space-between;
   padding: 48px 56px; gap: 32px; min-height: 340px;
@@ -438,7 +439,7 @@ footer {
 .fade-up-4 { animation-delay: .4s; }
 
 /* ── RESPONSIVE ── */
-@media (max-width: 1023px) {
+@media (max-width: 1050px) {
   .nav-links { display: none; }
   .nav-search { display: none; }
   .hamburger { display: flex; }
@@ -886,7 +887,7 @@ footer {
   .best-today-feat{min-height:220px;flex-direction:row;flex-wrap:wrap;align-items:center;gap:16px}
   .btf-emoji{font-size:3rem;margin:0}
 }
-@media(max-width:1023px){
+@media(max-width:1040px){
   .nav-links,.nav-search{display:none}.ham{display:flex}
   .store-layout{grid-template-columns:1fr}
   .sidebar{position:static;display:grid;grid-template-columns:repeat(2,1fr)}
@@ -953,6 +954,9 @@ footer {
   max-width: 1280px; margin: 0 auto; padding: 0 24px;
   height: 68px;
 }
+@media (max-width: 1100px) {
+  .nav-wrap { gap: 24px; }
+}
 
 /* Logo */
 .nav-logo {
@@ -999,11 +1003,11 @@ footer {
 .nav-search input::placeholder { color: rgba(255,255,255,.42); }
 .nav-search-btn {
   background: var(--teal); border: none;
-  padding: 9px 16px; color: #fff;
+  padding: 11px 16px; color: #fff;
   display: flex; align-items: center; flex-shrink: 0;
   transition: background var(--dur);
 }
-.nav-search-btn:hover { background: var(--teal-d); }
+/* .nav-search-btn:hover { background: var(--teal-d); } */
 
 /* Hamburger */
 .ham {
@@ -1623,7 +1627,7 @@ footer { background: var(--navy); color: rgba(255,255,255,.65); margin-top: 0; }
   .sidebar-filters.mobile-open { display: block; }
   .deals-grid { grid-template-columns: repeat(2, 1fr); }
 }
-@media (max-width: 1023px) {
+@media (max-width: 1040px) {
   .nav-links, .nav-search { display: none; }
   .ham { display: flex;position:absolute; right:20px;}
   .mega-menu { display: none !important; }
@@ -1643,4 +1647,521 @@ footer { background: var(--navy); color: rgba(255,255,255,.65); margin-top: 0; }
   .card-img { height: 180px; }
   .card-img-emoji { font-size: 5rem; }
   .filter-bar-inner { padding: 12px 16px; }
+}
+
+/* =========================================================
+   MOBILE RESPONSIVE PATCH
+   Place this at the absolute bottom of your CSS file
+========================================================= */
+
+/* Prevent horizontal scrolling globally */
+html, body {
+    max-width: 100vw;
+    overflow-x: hidden;
+}
+
+@media (max-width: 767px) {
+    /* 1. Fix the Hero Slider Padding */
+    .slide-inner {
+        padding: 24px 16px; /* Reduced from 36px 28px to fit small screens */
+        min-height: auto;
+    }
+    
+    .slide-title {
+        font-size: clamp(1.5rem, 8vw, 2.2rem); /* Ensure title scales down better */
+    }
+
+    /* 2. Fix Container and Section Padding */
+    .container {
+        padding: 0 16px;
+    }
+    .section {
+        padding: 32px 0;
+    }
+
+    /* 3. Override fixed minimum widths that break the layout */
+    .brand-item {
+        min-width: auto;
+        padding: 0 16px;
+    }
+    
+    .store-info, 
+    .c-main, 
+    .stat-item {
+        min-width: 100%; /* Forces elements to stack instead of overflow */
+    }
+
+    /* 4. Fix Navbar & Hamburger Conflicts */
+    /* You had both .hamburger and .ham classes fighting in your CSS */
+    .nav-links, 
+    .nav-search {
+        display: none !important;
+    }
+    
+    .hamburger, 
+    .ham {
+        display: flex !important;
+        position: relative; 
+        right: 0;
+    }
+    
+    .nav-inner,
+    .nav-wrap {
+        padding: 0 16px;
+        gap: 16px;
+    }
+
+    /* 5. Force specific grids to a single column */
+    .offer-grid, 
+    .exclusive-grid, 
+    .deals-grid-4, 
+    .deals-grid-3, 
+    .deal-mini-grid,
+    .sidebar {
+        grid-template-columns: 1fr !important;
+    }
+
+    /* 6. Fix Countdown Blocks */
+    .cd-block {
+        min-width: 60px; /* Reduced from 70px */
+        padding: 10px 8px;
+    }
+    .cd-num {
+        font-size: 1.5rem;
+    }
+
+    /* 7. Ensure drawers/menus don't exceed screen width */
+    .drawer {
+        width: 100vw;
+        max-width: 300px;
+    }
+}
+
+/* Extra small devices (like older iPhones) */
+@media (max-width: 400px) {
+    .stores-grid { 
+        grid-template-columns: 1fr; /* Stack stores instead of squeezing 2 columns */
+    }
+    .fd-left {
+        padding: 24px 16px;
+    }
+}
+
+
+/* ═══════════════════════════════════════════
+   BLOG SPECIFIC STYLES
+═══════════════════════════════════════════ */
+
+/* ── Hero & Search ── */
+.blog-hero {
+  background: linear-gradient(135deg, var(--navy) 0%, #081D3A 100%);
+  padding: 64px 0 48px;
+  text-align: center;
+}
+.blog-hero-title {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  font-weight: 800;
+  color: #fff;
+  margin-bottom: 12px;
+}
+.blog-hero-sub {
+  color: rgba(255,255,255,.7);
+  font-size: 1.05rem;
+  max-width: 600px;
+  margin: 0 auto 36px;
+  line-height: 1.6;
+}
+.blog-controls {
+  max-width: 800px;
+  margin: 0 auto;
+}
+.blog-search {
+  position: relative;
+  margin-bottom: 24px;
+}
+.blog-search .search-icon {
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.1rem;
+  color: var(--muted);
+}
+.blog-search input {
+  width: 100%;
+  padding: 16px 20px 16px 52px;
+  border-radius: 50px;
+  border: none;
+  font-size: 1rem;
+  font-family: 'DM Sans', sans-serif;
+  box-shadow: 0 8px 24px rgba(0,0,0,.15);
+  outline: none;
+  transition: box-shadow var(--dur);
+}
+.blog-search input:focus {
+  box-shadow: 0 8px 32px rgba(26,188,156,.25);
+}
+.blog-categories {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.cat-pill {
+  padding: 8px 20px;
+  border-radius: 50px;
+  background: rgba(255,255,255,.1);
+  border: 1.5px solid rgba(255,255,255,.2);
+  color: #fff;
+  font-size: .875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--dur);
+}
+.cat-pill:hover, .cat-pill.active {
+  background: var(--teal);
+  border-color: var(--teal);
+}
+
+/* ── Blog Grid & Cards ── */
+.blog-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+}
+.blog-card {
+  background: #fff;
+  border-radius: var(--r);
+  border: 1.5px solid var(--line);
+  box-shadow: var(--sh-sm);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transition: transform .3s var(--ease), box-shadow .3s var(--ease);
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
+}
+.blog-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--sh-md);
+}
+.blog-img-wrap {
+  width: 100%;
+  height: 220px;
+  overflow: hidden;
+}
+.blog-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform .4s var(--ease);
+}
+.blog-card:hover .blog-img-wrap img {
+  transform: scale(1.06);
+}
+.blog-content {
+  padding: 24px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.badge-sky {
+  background: var(--sky);
+  color: var(--blue);
+  width: fit-content;
+  margin-bottom: 12px;
+}
+.blog-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--navy);
+  margin-bottom: 10px;
+  line-height: 1.4;
+}
+.blog-excerpt {
+  font-size: .9rem;
+  color: var(--muted);
+  line-height: 1.6;
+  margin-bottom: 24px;
+  flex: 1;
+}
+.blog-author-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-top: 16px;
+  border-top: 1px solid var(--line);
+}
+.author-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.author-info {
+  display: flex;
+  flex-direction: column;
+}
+.author-name {
+  font-size: .85rem;
+  font-weight: 700;
+  color: var(--text);
+}
+.author-meta {
+  font-size: .75rem;
+  color: var(--muted);
+}
+.dot {
+  margin: 0 4px;
+  opacity: .5;
+}
+
+/* ── Empty State ── */
+.blog-empty-state {
+  text-align: center;
+  padding: 64px 20px;
+  background: #fff;
+  border-radius: var(--r);
+  border: 1.5px dashed var(--line);
+}
+.empty-icon {
+  font-size: 3rem;
+  margin-bottom: 16px;
+}
+.blog-empty-state h3 {
+  font-size: 1.25rem;
+  color: var(--navy);
+  margin-bottom: 8px;
+}
+.blog-empty-state p {
+  color: var(--muted);
+  font-size: .9rem;
+  margin-bottom: 24px;
+}
+
+/* ── Skeleton Adjustments ── */
+.skeleton-card { border-color: transparent; box-shadow: none; }
+
+/* ── Blog Details Layout ── */
+.blog-breadcrumb {
+  margin-bottom: 32px;
+  font-size: .875rem;
+  color: var(--muted);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.back-link {
+  color: var(--blue);
+  font-weight: 600;
+  transition: color var(--dur);
+}
+.back-link:hover { color: var(--navy); }
+.blog-breadcrumb .sep { opacity: .5; }
+
+.blog-layout {
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  gap: 48px;
+  align-items: start;
+}
+.blog-main {
+  background: #fff;
+  border-radius: var(--r-lg);
+  padding: 40px;
+  box-shadow: var(--sh-sm);
+  border: 1.5px solid var(--line);
+}
+.blog-detail-title {
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+  font-weight: 800;
+  color: var(--navy);
+  line-height: 1.2;
+  margin-bottom: 24px;
+}
+.blog-author-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 24px;
+  margin-bottom: 24px;
+  border-bottom: 1px solid var(--line);
+  flex-wrap: wrap;
+  gap: 16px;
+}
+.author-profile {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.author-avatar-lg {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.author-date {
+  font-size: .85rem;
+  color: var(--muted);
+  display: block;
+  margin-top: 3px;
+}
+.blog-social-share {
+  display: flex;
+  gap: 8px;
+}
+.share-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1.5px solid var(--line);
+  background: #fff;
+  color: var(--text);
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all var(--dur);
+}
+.share-btn:hover {
+  background: var(--sky);
+  color: var(--blue);
+  border-color: var(--blue);
+}
+
+.blog-featured-img {
+  width: 100%;
+  height: auto;
+  max-height: 480px;
+  object-fit: cover;
+  border-radius: var(--r);
+  margin-bottom: 32px;
+}
+
+/* ── Rich Content (Markdown style rendering) ── */
+.rich-content {
+  font-family: 'DM Sans', sans-serif;
+  color: var(--text);
+  line-height: 1.8;
+  font-size: 1.05rem;
+}
+.rich-content p { margin-bottom: 20px; }
+.rich-content h2 {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.5rem;
+  color: var(--navy);
+  margin: 36px 0 16px;
+}
+.rich-content ul {
+  margin-bottom: 24px;
+  padding-left: 24px;
+}
+.rich-content li { margin-bottom: 10px; }
+.rich-content strong { color: var(--navy); }
+.rich-content blockquote {
+  font-style: italic;
+  font-size: 1.2rem;
+  border-left: 4px solid var(--teal);
+  background: var(--sky);
+  padding: 20px 24px;
+  border-radius: 0 var(--r-sm) var(--r-sm) 0;
+  margin: 32px 0;
+  color: var(--blue);
+}
+
+/* ── Tags ── */
+.blog-tags {
+  display: flex;
+  gap: 10px;
+  margin-top: 40px;
+  padding-top: 24px;
+  border-top: 1px solid var(--line);
+}
+.blog-tag {
+  background: #f1f5f9;
+  color: var(--muted);
+  padding: 6px 14px;
+  border-radius: 6px;
+  font-size: .85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--dur);
+}
+.blog-tag:hover { background: var(--sky); color: var(--blue); }
+
+/* ── Sidebar ── */
+.recent-post-row {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--line);
+  text-decoration: none;
+  color: inherit;
+}
+.recent-post-row:last-child { border-bottom: none; }
+.recent-post-row img {
+  width: 70px;
+  height: 50px;
+  border-radius: 8px;
+  object-fit: cover;
+}
+.rp-info h4 {
+  font-size: .875rem;
+  font-weight: 600;
+  line-height: 1.4;
+  margin-bottom: 4px;
+  transition: color var(--dur);
+}
+.recent-post-row:hover .rp-info h4 { color: var(--blue); }
+.rp-info span { font-size: .75rem; color: var(--muted); }
+
+/* ── Responsive Grid ── */
+@media (max-width: 992px) {
+  .blog-grid { grid-template-columns: repeat(2, 1fr); }
+  .blog-layout { grid-template-columns: 1fr; }
+  .blog-sidebar { display: none; }
+  .blog-main { padding: 32px 24px; }
+}
+@media (max-width: 640px) {
+  .blog-grid { grid-template-columns: 1fr; }
+  .blog-main { padding: 24px 16px; }
+  .blog-detail-title { font-size: 1.6rem; }
+}
+
+@media (max-width: 767px) {
+    /* ... existing code ... */
+
+    /* 4. Fix Navbar & Hamburger Conflicts */
+    .nav-links, 
+    .nav-search {
+        display: none !important;
+    }
+    
+    .hamburger, 
+    .ham {
+        display: flex !important;
+        position: relative; 
+        right: 0;
+        margin-left: auto; /* <-- ADD THIS: Pushes the button to the far right */
+    }
+    
+    .nav-inner,
+    .nav-wrap {
+        padding: 0 16px;
+        gap: 16px;
+        justify-content: space-between; /* <-- ADD THIS: Ensures elements are spaced apart */
+    }
+
+    /* ... existing code ... */
+}
+
+/* Hide the hamburger button while the mobile drawer is open */
+.ham.open {
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
 }
